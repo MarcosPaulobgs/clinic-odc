@@ -1,0 +1,301 @@
+/* Primeira dobra: header + hero ocupam exatamente a altura da tela (100svh) */
+
+.hero {
+  position:relative;
+  overflow:hidden;
+  color:#fff;
+  background:linear-gradient(135deg,#0a5a42 0%,#0f7455 55%,#17936c 100%);
+  /* altura da tela menos o header (e a área segura do topo no iPhone) */
+  min-height:calc(100vh - var(--header-h) - env(safe-area-inset-top,0px));
+  min-height:calc(100svh - var(--header-h) - env(safe-area-inset-top,0px));
+  display:flex;
+  align-items:center;
+  padding:clamp(16px,3.6vh,48px) 0
+}
+
+.hero::before,.hero::after {
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  background:rgba(255,255,255,.07);
+  pointer-events:none
+}
+
+.hero::before {
+  width:520px;
+  height:520px;
+  right:-140px;
+  top:-160px
+}
+
+.hero::after {
+  width:360px;
+  height:360px;
+  left:-120px;
+  bottom:-170px
+}
+
+.hero .wrap {
+  display:grid;
+  gap:clamp(24px,4vw,56px);
+  align-items:center;
+  position:relative;
+  z-index:1;
+  width:100%
+}
+
+@media(min-width:900px) {
+  .hero .wrap {
+    grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr)
+  }
+}
+
+/* Tamanhos seguem a LARGURA e a ALTURA da tela, para tudo caber sem rolar */
+.hero h1 {
+  font-size:clamp(1.75rem,min(8.4vw,6.2vh),3.8rem);
+  line-height:1.05;
+  letter-spacing:-.03em;
+  margin:0 0 clamp(10px,2.4vh,22px)
+}
+
+.hero h1 span {
+  color:#bff0d6
+}
+
+.hero .sub {
+  color:rgba(255,255,255,.9);
+  font-size:clamp(.95rem,min(4.1vw,2.5vh),1.3rem);
+  line-height:1.55;
+  max-width:600px;
+  margin:0 0 clamp(14px,3.4vh,32px)
+}
+
+.pill {
+  display:inline-block;
+  background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.3);
+  padding:clamp(5px,.9vh,7px) 16px;
+  border-radius:999px;
+  font-size:clamp(.7rem,1.7vh,.85rem);
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  margin-bottom:clamp(10px,2.4vh,22px)
+}
+
+.hero-cta {
+  display:flex;
+  flex-wrap:wrap;
+  gap:clamp(10px,1.6vh,14px)
+}
+
+.btn.white {
+  background:#fff;
+  color:var(--green);
+  box-shadow:0 14px 30px -14px rgba(0,0,0,.5)
+}
+
+.btn.white:hover {
+  background:#eaf7f1
+}
+
+.btn.ghost {
+  background:transparent;
+  color:#fff;
+  border:2px solid rgba(255,255,255,.7)
+}
+
+.btn.ghost:hover {
+  background:rgba(255,255,255,.14)
+}
+
+.hero .btn.lg {
+  padding:clamp(12px,2vh,18px) clamp(20px,3vw,32px);
+  font-size:clamp(.95rem,2.2vh,1.1rem)
+}
+
+@media(max-width:560px) {
+  .hero-cta .btn {
+    width:100%;
+    text-align:center
+  }
+}
+
+.hero .cta-note {
+  color:rgba(255,255,255,.8);
+  font-size:clamp(.75rem,1.7vh,.85rem);
+  margin:clamp(8px,1.6vh,14px) 0 0
+}
+
+.chips {
+  list-style:none;
+  margin:clamp(12px,3vh,26px) 0 0;
+  padding:0;
+  display:flex;
+  flex-wrap:wrap;
+  gap:clamp(6px,1.1vh,10px)
+}
+
+.chips li {
+  background:rgba(255,255,255,.13);
+  border:1px solid rgba(255,255,255,.25);
+  padding:clamp(5px,1vh,8px) clamp(10px,1.4vw,16px);
+  border-radius:999px;
+  font-size:clamp(.75rem,1.8vh,.92rem);
+  font-weight:600
+}
+
+.chips li::before {
+  content:"\2713";
+  margin-right:8px;
+  color:#bff0d6
+}
+
+/* Arte do dente: só no desktop, limitada pela altura da tela */
+.hero-art {
+  display:none;
+  position:relative;
+  aspect-ratio:1;
+  width:min(100%,430px,64vh);
+  justify-self:center
+}
+
+@media(min-width:900px) {
+  .hero-art {
+    display:block
+  }
+}
+
+.hero-art .ring {
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.28),rgba(255,255,255,.06) 70%);
+  border:1px solid rgba(255,255,255,.25)
+}
+
+.hero-art .tooth {
+  position:absolute;
+  inset:14%;
+  width:72%;
+  height:72%;
+  filter:drop-shadow(0 28px 36px rgba(0,0,0,.3));
+  animation:float 5s ease-in-out infinite
+}
+
+.spark {
+  position:absolute;
+  animation:twinkle 3s ease-in-out infinite
+}
+
+.s1 {
+  width:46px;
+  height:46px;
+  top:6%;
+  right:10%
+}
+
+.s2 {
+  width:26px;
+  height:26px;
+  bottom:14%;
+  left:6%;
+  animation-delay:1.2s
+}
+
+/* Telas baixas: tira os itens menos importantes para o hero caber sem estourar */
+@media(max-width:899px) and (max-height:880px) {
+  .hero .cta-note {
+    display:none
+  }
+}
+
+@media(max-width:899px) and (max-height:790px) {
+  .chips {
+    display:none
+  }
+}
+
+@media(min-width:900px) and (max-width:1100px) and (max-height:680px) {
+  .hero .cta-note,.chips {
+    display:none
+  }
+}
+
+@media(max-height:560px) {
+  .pill,.chips,.hero .cta-note {
+    display:none
+  }
+}
+
+@media(max-width:400px) and (max-height:520px) {
+  .hero .sub {
+    display:none
+  }
+}
+
+@keyframes float {
+  0%,100% {
+    transform:translateY(0)
+  }
+  50% {
+    transform:translateY(-14px)
+  }
+}
+
+@keyframes twinkle {
+  0%,100% {
+    opacity:.35;
+    transform:scale(.8)
+  }
+  50% {
+    opacity:1;
+    transform:scale(1.1)
+  }
+}
+
+.hero-txt>* {
+  animation:rise .85s cubic-bezier(.2,.7,.2,1) backwards
+}
+
+.hero-txt>*:nth-child(2) {
+  animation-delay:.08s
+}
+
+.hero-txt>*:nth-child(3) {
+  animation-delay:.16s
+}
+
+.hero-txt>*:nth-child(4) {
+  animation-delay:.24s
+}
+
+.hero-txt>*:nth-child(5) {
+  animation-delay:.3s
+}
+
+.hero-txt>*:nth-child(6) {
+  animation-delay:.36s
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow:0 0 0 0 rgba(255,255,255,.55),0 14px 30px -14px rgba(0,0,0,.5)
+  }
+  70% {
+    box-shadow:0 0 0 18px rgba(255,255,255,0),0 14px 30px -14px rgba(0,0,0,.5)
+  }
+  100% {
+    box-shadow:0 0 0 0 rgba(255,255,255,0),0 14px 30px -14px rgba(0,0,0,.5)
+  }
+}
+
+.hero .btn.white {
+  animation:pulse 2.8s 1.6s infinite
+}
+
+@media(prefers-reduced-motion:reduce) {
+  .hero-txt>*,.hero-art .tooth,.spark,.hero .btn.white {
+    animation:none
+  }
+}

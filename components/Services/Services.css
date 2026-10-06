@@ -1,0 +1,114 @@
+/* Cards de serviços */
+
+.svc-sec {
+  background:var(--bg2);
+  /* Enquadrada como o hero: ocupa a altura da tela (menos o header) e centraliza o conteúdo */
+  min-height:calc(100vh - var(--header-h) - env(safe-area-inset-top,0px));
+  min-height:calc(100svh - var(--header-h) - env(safe-area-inset-top,0px));
+  display:flex;
+  align-items:center;
+  padding:clamp(16px,3.6vh,48px) 0
+}
+
+.svc-sec .wrap {
+  width:100%
+}
+
+.svc-sec h2 {
+  font-size:clamp(1.35rem,min(5.4vw,4.4vh),2.3rem);
+  margin-bottom:clamp(6px,1.2vh,14px)
+}
+
+.svc-sec .center p {
+  font-size:clamp(.88rem,min(3.6vw,2.3vh),1.05rem)
+}
+
+/* PC: 3 blocos em cima e 3 embaixo */
+.svc-grid {
+  display:grid;
+  gap:clamp(12px,2.4vh,22px);
+  margin-top:clamp(16px,3.4vh,38px);
+  grid-template-columns:repeat(3,minmax(0,1fr))
+}
+
+.svc {
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:clamp(18px,3.2vh,30px);
+  transition:transform .25s,box-shadow .25s
+}
+
+.svc:hover {
+  transform:translateY(-6px);
+  box-shadow:0 18px 34px -20px rgba(15,116,85,.55)
+}
+
+.svc-ico {
+  width:clamp(46px,7vh,62px);
+  height:clamp(46px,7vh,62px);
+  border-radius:16px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(145deg,#17936c,#0f7455);
+  margin-bottom:clamp(10px,2vh,20px);
+  transition:transform .25s
+}
+
+.svc:hover .svc-ico {
+  transform:scale(1.08) rotate(-4deg)
+}
+
+.svc h3 {
+  margin:0 0 8px;
+  font-size:clamp(1.02rem,2.4vh,1.15rem);
+  line-height:1.3;
+  color:var(--green)
+}
+
+.svc p {
+  margin:0;
+  color:var(--muted);
+  font-size:clamp(.86rem,2vh,1rem);
+  line-height:1.5
+}
+
+/* Celular: 2 colunas x 3 linhas, blocos compactos para caber na tela */
+@media(max-width:700px) {
+  .svc-grid {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px
+  }
+
+  .svc {
+    padding:14px;
+    border-radius:16px
+  }
+
+  .svc-ico {
+    width:40px;
+    height:40px;
+    border-radius:12px;
+    margin-bottom:8px
+  }
+
+  .svc-ico svg {
+    width:22px;
+    height:22px
+  }
+
+  .svc h3 {
+    font-size:.92rem;
+    margin-bottom:4px
+  }
+
+  .svc p {
+    font-size:.78rem;
+    line-height:1.4
+  }
+
+  .svc-sec .btn.lg {
+    padding:13px 24px;
+    font-size:.95rem
+  }
+}

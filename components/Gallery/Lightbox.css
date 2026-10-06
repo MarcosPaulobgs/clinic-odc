@@ -1,0 +1,135 @@
+/* Foto expandida */
+
+body.lb-lock {
+  position:fixed;
+  left:0;
+  right:0;
+  width:100%;
+  overflow:hidden
+}
+
+.lb {
+  position:fixed;
+  inset:0;
+  z-index:100;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  padding:calc(56px + env(safe-area-inset-top,0px)) 14px calc(24px + env(safe-area-inset-bottom,0px));
+  background:rgba(4,30,22,.94);
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .3s ease,visibility 0s .3s;
+  overscroll-behavior:contain;
+  touch-action:none
+}
+
+.lb.open {
+  opacity:1;
+  visibility:visible;
+  transition:opacity .3s ease
+}
+
+.lb-fig {
+  margin:0;
+  max-width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:12px;
+  min-width:0
+}
+
+.lb-fig img {
+  max-width:100%;
+  max-height:78vh;
+  max-height:78dvh;
+  width:auto;
+  height:auto;
+  border-radius:14px;
+  box-shadow:0 30px 60px -20px rgba(0,0,0,.7);
+  object-fit:contain
+}
+
+.lb-fig img.swap {
+  animation:lbIn .38s cubic-bezier(.2,.7,.2,1)
+}
+
+@keyframes lbIn {
+  from {
+    opacity:0;
+    transform:scale(.93)
+  }
+  to {
+    opacity:1;
+    transform:none
+  }
+}
+
+.lb-fig figcaption {
+  color:#e3f3ea;
+  font-weight:600;
+  text-align:center
+}
+
+.lb button {
+  font:inherit;
+  cursor:pointer;
+  border:0;
+  color:#fff;
+  background:rgba(255,255,255,.14);
+  transition:background .2s,transform .2s
+}
+
+.lb button:hover {
+  background:rgba(255,255,255,.28)
+}
+
+.lb button:focus-visible {
+  outline:3px solid #bff0d6;
+  outline-offset:2px
+}
+
+.lb-x {
+  position:absolute;
+  top:calc(12px + env(safe-area-inset-top,0px));
+  right:14px;
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  font-size:2rem;
+  line-height:1
+}
+
+.lb-nav {
+  flex:none;
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  font-size:2rem;
+  line-height:1;
+  padding-bottom:4px
+}
+
+@media(max-width:600px) {
+  .lb {
+    gap:6px;
+    padding-left:6px;
+    padding-right:6px
+  }
+  .lb-nav {
+    width:38px;
+    height:38px;
+    font-size:1.6rem
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  .lb-fig img.swap {
+    animation:none
+  }
+  .lb {
+    transition:none
+  }
+}

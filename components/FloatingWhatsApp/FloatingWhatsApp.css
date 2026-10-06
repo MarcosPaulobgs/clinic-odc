@@ -1,0 +1,31 @@
+/* Botão flutuante: só aparece depois que o visitante rola além do hero,
+   para não cobrir o conteúdo da primeira tela (o hero já tem o botão de WhatsApp) */
+.wpp {
+  position:fixed;
+  right:16px;
+  bottom:calc(16px + env(safe-area-inset-bottom,0px));
+  z-index:20;
+  background:#25d366;
+  color:#06310f;
+  font-weight:800;
+  text-decoration:none;
+  padding:13px 18px;
+  border-radius:999px;
+  box-shadow:0 10px 24px -8px rgba(0,0,0,.45);
+  opacity:0;
+  transform:translateY(18px) scale(.9);
+  pointer-events:none;
+  transition:opacity .35s ease,transform .45s cubic-bezier(.2,1.4,.4,1)
+}
+
+.wpp.show {
+  opacity:1;
+  transform:none;
+  pointer-events:auto
+}
+
+@media(prefers-reduced-motion:reduce) {
+  .wpp {
+    transition:none
+  }
+}
