@@ -7,6 +7,7 @@ import Hours from '@/components/Hours/Hours'
 import Footer from '@/components/Footer/Footer'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp/FloatingWhatsApp'
 import ScrollReveal from '@/components/ScrollReveal/ScrollReveal'
+import CleanAnchors from '@/components/CleanAnchors/CleanAnchors'
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       <Footer />
       <FloatingWhatsApp />
       <ScrollReveal />
+      <CleanAnchors />
     </>
   )
 }
